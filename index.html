@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>A-Frame Walkthrough</title>
+		<meta name="description" content="Step by step guide to building a scene with A-Frame">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+   		<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.rawgit.com/codemirror/CodeMirror/5.19.0/lib/codemirror.css">
+		<link rel="stylesheet" href="https://cdn.rawgit.com/codemirror/CodeMirror/5.19.0/addon/hint/show-hint.css">
+		<link rel="stylesheet" href="style.css">
+		<link href="https://samsunginter.net/fonts/SamsungOne/fonts.css" rel="stylesheet" type="text/css">
+		<script src="https://cdn.rawgit.com/codemirror/CodeMirror/5.19.0/lib/codemirror.js"></script>
+		<script src="https://cdn.rawgit.com/codemirror/CodeMirror/5.19.0/addon/hint/show-hint.js"></script>
+		<script src="https://cdn.rawgit.com/codemirror/CodeMirror/5.19.0/addon/hint/xml-hint.js"></script>
+		<script src="https://cdn.rawgit.com/codemirror/CodeMirror/5.19.0/addon/hint/html-hint.js"></script>
+		<script src="https://cdn.rawgit.com/codemirror/CodeMirror/5.19.0/mode/xml/xml.js"></script>
+		<script src="https://cdn.rawgit.com/codemirror/CodeMirror/5.19.0/mode/javascript/javascript.js"></script>
+		<script src="https://cdn.rawgit.com/codemirror/CodeMirror/5.19.0/mode/css/css.js"></script>
+		<script src="https://cdn.rawgit.com/codemirror/CodeMirror/5.19.0/mode/htmlmixed/htmlmixed.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js"></script>
+	</head>
+	<body>
+		<div class="instructions">
+			Hello World
+		</div>
+		<div class="buttons">
+			<div>
+				<button id="btn-sample">Load Sample Code for this Step</button>
+				<button id="btn-submit">Run »</button>
+			</div><div>
+				<button id="btn-prevstep">Previous Step</button>
+				<button id="btn-nextstep">Next Step</button>
+			</div>
+		</div>
+		<div class="main">
+			<div class="code-area">
+				<div id="code"></div>
+			</div>
+			<a-scene embedded>
+				<a-entity id="contents"></a-entity>
+			</a-scene>
+		</div>
+		<div class="footer">Built with &lt;3 by <a href="https://twitter.com/samsunginternet" target="_blank">Samsung Internet</a></div>
+
+		<script class="step-content" id="step-1" type="text/markdown">
+			# A-Frame Walkthrough - Step 1/10
+
+			Welcome to the A-Frame walk through, the idea of this tutorial is to get you feeling comfortable building A-Frame scenes using HTML.
+
+			To start the scene off we have an empty HTML document which includes the A-Frame library using a `<script>` tag.
+
+			The first element we will look at is the `<a-scene>` element.
+
+			The a-scene contains all our A-Frame mark up it takes care of the complex 3D rendering.
+
+			Right now we only have an empty scene because there is no content.
+
+			<input type="checkbox" id="step-1-1"><label for="step-1-1"> Notice that there is a button to enter Virtual Reality</label>
+		</script>
+
+		<script class="step-content" id="step-1" type="text/html">
+		</script>
+
+		<script class="step-content" id="step-2" type="text/markdown">
+			# A-Frame Walkthrough - Step 2/10
+
+			* The different A-Frame HTML elements are known as a *primitive*.
+			* When added to the HTML document, each Element is known as an *entity*.
+			* Entities are customised by setting their attributes.
+			* Each attribute controls a *component*
+
+			Example:
+
+
+			- The `a-sky` primitive is used for the background of a scene.
+			- We can make an entity by adding `<a-sky></a-sky>` into the `<a-scene>`.
+			- We can use the color component to make it blue:
+
+			```html
+				<a-sky color="skyblue"></a-sky>
+			```
+
+			<input type="checkbox" id="step-2-1"><label for="step-2-1"> Try adding an `a-sky` to the scene, then press the **Run** button.</label>
+		</script>
+
+		<script class="step-content" id="step-2" type="text/html">
+			<a-sky color="skyblue"></a-sky>
+		</script>
+
+		<script class="step-content" id="step-3" type="text/markdown">
+			# A-Frame Walkthrough - Step 3/10
+
+			We can add 3D shapes to the scene. The `a-box` primitive adds a cube.
+
+			By default this is at the XYZ coordinate `0 0 0` which is on top of the camera.
+
+			We can use the position component to change it's location to in front of the camera.
+
+			```html
+				<a-box position="0 0 -5"></a-box>
+			```
+
+			<input type="checkbox" id="step-3-1"><label for="step-3-1"> Add the cube at the position 0 0 -5</label>
+			<input type="checkbox" id="step-3-2"><label for="step-3-2"> Try other values for `position`</label>
+			<input type="checkbox" id="step-3-3"><label for="step-3-3"> Use `color="red"` to make the cube red</label>
+		</script>
+
+		<script class="step-content" id="step-3" type="text/html">
+			<a-sky color="skyblue"></a-sky>
+			<a-box color="red" position="0 1 -5"></a-box>
+		</script>
+
+		<script class="step-content" id="step-4" type="text/markdown">
+			# A-Frame Walkthrough - Step 4/10
+
+			The simplest A-Frame primitive is `a-entity`. Which is simply an empty entity in the document.
+
+			All other primitives are based on `a-entity` for example:
+
+			`<a-box color="blue"></a-box>` is equivalent to `<a-entity geometry="primitive:box;" material="color:blue;"></a-entity>`
+
+			The geometry component has many primitives such as: `torus` and `sphere`.
+
+			The geometry component also has many configuration options. <a href="https://aframe.io/docs/0.5.0/components/geometry.html#torus" target="_blank">A-Frame Documentation</a>
+
+			<input type="checkbox" id="step-4-1"><label for="step-4-1"> Use `a-entity` and the `geometry` component to add a Torus to the scene.
+		</script>
+
+		<script class="step-content" id="step-4" type="text/html">
+			<a-sky color="skyblue"></a-sky>
+			<a-box color="red" position="0 1 -5"></a-box>
+			<a-entity geometry="primitive: torus;" material="color:green;" position="-2 1 -5"></a-entity>
+		</script>
+
+		<script src="main.js"></script>
+	</body>
+</html>
