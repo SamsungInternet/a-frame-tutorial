@@ -26,8 +26,13 @@ window.onload = function () {
 		lineNumbers: true,
 		value: ''
 	});
-	sample('step-1');
-	renderStep('step-1');
+	if (location.hash.length >= 2) {
+		step = Number(location.hash.slice(1)) - 1;
+	} else {
+		step = 0;
+	};
+	nextStep();
+	getSample();
 };
 
 var instructions = document.querySelector('.instructions');
@@ -55,6 +60,7 @@ document.getElementById('btn-submit').addEventListener('click', submit);
 function nextStep() {
 	if (step === MAX) return;
 	step++;
+	location.hash = step;
 	renderStep('step-' + step);
 }
 document.getElementById('btn-nextstep').addEventListener('click', nextStep);
@@ -63,6 +69,7 @@ document.getElementById('btn-nextstep').addEventListener('click', nextStep);
 function prevStep() {
 	if (step === MIN) return;
 	step--;
+	location.hash = step;
 	renderStep('step-' + step);
 }
 document.getElementById('btn-prevstep').addEventListener('click', prevStep);
