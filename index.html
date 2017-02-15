@@ -135,6 +135,29 @@
 			<a-entity geometry="primitive: torus;" material="color:green;" position="-2 1 -5"></a-entity>
 		</script>
 
+		<script class="step-content" id="step-5" type="text/markdown">
+			# A-Frame Walkthrough - Step 5/10
+
+			In A-Frame objects are transformed using their parent as the origin.
+
+			By transform I mean `position`, `rotation` or `scale`. Like the position component you used earlier these are also in XYZ coordinates.
+
+			* Scale: "1 1 1" is the default, "2 2 2" is twice as big in each direction.
+			* Rotation: "0 0 0" is the default "0 180 0" is rotated 180 around the Y axis.
+
+			This allows you to position/scale/rotate an entity and all of it's children are treated as if they were part of the parent entity.
+
+			<input type="checkbox" id="step-5-1"><label for="step-5-1"> Try experimenting on an element using the `scale` and `rotation` components.
+			<input type="checkbox" id="step-5-1"><label for="step-5-1"> Make a new entity as a child of another.
+		</script>
+
+		<script class="step-content" id="step-5" type="text/html">
+			<a-sky color="skyblue"></a-sky>
+			<a-box color="red" position="0 1 -5" rotation="0 30 0">
+				<a-entity geometry="primitive: torus;" material="color:green;" scale="1.5 1.5 1.5"></a-entity>
+			</a-box>
+		</script>
+
 		<script src="main.js"></script>
 	</body>
 </html>
