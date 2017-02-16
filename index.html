@@ -79,7 +79,7 @@
 			- We can use the color component to make it blue:
 
 			```html
-				<a-sky color="skyblue"></a-sky>
+<a-sky color="skyblue"></a-sky>
 			```
 
 			<input type="checkbox" id="step-2-1"><label for="step-2-1"> Try adding an `a-sky` to the scene, then press the **Run** button.</label>
@@ -99,7 +99,7 @@
 			We can use the position component to change it's location to in front of the camera.
 
 			```html
-				<a-box position="0 0 -5"></a-box>
+<a-box position="0 0 -5"></a-box>
 			```
 
 			<input type="checkbox" id="step-3-1"><label for="step-3-1"> Add the cube at the position 0 0 -5</label>
@@ -148,13 +148,13 @@
 			below the blue box will be positioned 2 units to the left of the red box. Both boxes will be rotated by 30 degrees around the center of the red parent box.
 
 			```html
-			<a-box color="red" position="1 1 -5" rotation="0 30 0">
-				<a-box color="blue" position="2 0 0"></a-box>
-			</a-box>
+<a-box color="red" position="1 1 -5" rotation="0 30 0">
+	<a-box color="blue" position="2 0 0"></a-box>
+</a-box>
 			```
 
 			<input type="checkbox" id="step-5-1"><label for="step-5-1"> Try experimenting on an element using the `scale` and `rotation` components.
-			<input type="checkbox" id="step-5-1"><label for="step-5-1"> Make a new entity as a child of another.
+			<input type="checkbox" id="step-5-2"><label for="step-5-2"> Make a new entity as a child of another.
 		</script>
 
 		<script class="step-content" id="step-5" type="text/html">
@@ -164,6 +164,79 @@
 			</a-box>
 		</script>
 
-		<script src="main.js"></script>
+		<script class="step-content" id="step-6" type="text/markdown">
+			# A-Frame Walkthrough - Step 6/10
+
+			Animation is integral for building an interesting experience. This is achieved in A-Frame with`a-animation`. <a href="https://aframe.io/docs/0.5.0/core/animations.html" target="_blank">[Documentation]</a>
+
+			Put an `<a-animation></a-animation>` entity inside an object to animate it.
+
+			It has a number of properties. Here are the main ones:
+
+			* `attribute="rotation"` the property you want to animate often this will be one of `position`, `rotation` or `scale`, but it can be any attribute.
+			* `to="0 360 0"` the new value of the property it will go smoothly from the current event to this value.
+			* `dur="1000"` the time in milliseconds the animation should take
+			* `repeat="10"` the number of times it should it happen, if you set it to `indefinite` it will go forever.
+			* `easing="linear"` how the transitions happens, `linear` is constant speed, `ease` accelerates at the beginning and gets slower near the end. There are others like `elastic-out-elastic` which are more quirky.
+
+			Example:
+
+			```
+<a-animation attribute="rotation" dur="1000" to="0 360 0" repeat="indefinite"></a-animation>
+			 ```
+
+			<input type="checkbox" id="step-6-1"><label for="step-6-1"> Try making an element spin or grow.
+			<input type="checkbox" id="step-6-1"><label for="step-6-1"> Try changing the easing function
+		</script>
+
+		<script class="step-content" id="step-6" type="text/html">
+			<a-sky color="skyblue"></a-sky>
+			<a-box color="red" position="0 1.5 -5" rotation="0 30 0">
+				<a-entity geometry="primitive: torus;" material="color:green;" scale="1.5 1.5 1.5">
+					<a-animation attribute="rotation" dur="5000" from="0 0 0" to="0 360 0" repeat="indefinite" easing="linear"></a-animation>
+				</a-entity>
+			</a-box>
+		</script>
+
+		<script class="step-content" id="step-7" type="text/markdown">
+			# A-Frame Walkthrough - Step 6/10
+
+			You can make an object seem really detailed by wrapping an image around it.
+
+			Images can be preloaded using the `a-assets` primitive. Tag them with an id and reference the id to use them.
+
+			* Some primitives such as `a-sky` allow you to set it using the `src="#image"` attribute.
+			* You can set it on any object with the `material` component, e.g. `material="src: #image;"`
+
+			Example:
+
+			```
+				<a-assets>
+					<img id="sky" src="360.jpg" crossorigin="anonymous" /> <!-- image taken with 360 camera -->
+					<img id="checkerboard" src="checkerboard.jpg" crossorigin="anonymous" /> <!-- checkerboard image -->
+				</a-assets>
+
+				<a-sky src="#sky"></a-sky>
+				<a-sphere material="src: #checkerboard;"></a-sphere>
+			```
+
+			<input type="checkbox" id="step-7-1"><label for="step-7-1"> Apply an image to the sky
+			<input type="checkbox" id="step-7-2"><label for="step-7-2"> Apply an image to some of the geometry.
+		</script>
+
+		<script class="step-content" id="step-7" type="text/html">
+			<a-sky src=""></a-sky>
+			<a-box color="red" position="0 1.5 -5" rotation="0 30 0">
+				<a-entity geometry="primitive: torus;" material="color:green;" scale="1.5 1.5 1.5">
+					<a-animation attribute="rotation" dur="5000" from="0 0 0" to="0 360 0" repeat="indefinite" easing="linear"></a-animation>
+				</a-entity>
+			</a-box>
+		</script>
+
+		<script src="main.js">
+		</script>
+
+		<script src="init-service-worker.js">
+		</script>
 	</body>
 </html>
