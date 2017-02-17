@@ -37,11 +37,11 @@ window.onload = function () {
 
 var instructions = document.querySelector('.instructions');
 var step = 1;
-var scene = document.querySelector('a-scene #contents');
+var scene = document.querySelector('a-scene');
 
 function renderStep(id) {
 	instructions.innerHTML = marked(document.querySelector('#' + id + '[type="text/markdown"]').text.replace(/\n\t\t\t/ig, '\n'));
-	document.querySelector('a-scene').resize();
+	scene.resize();
 }
 
 function getSample() {
@@ -53,8 +53,16 @@ function sample(id) {
 }
 document.getElementById('btn-sample').addEventListener('click', getSample);
 
+var oldEls = [];
+
 function submit() {
-	scene.innerHTML = document.createRange().createContextualFragment(editor.getValue()).querySelector('a-scene').innerHTML;
+	oldEls.splice(0).forEach(function (el) {
+		el.parentNode.removeChild(el);
+	});
+	[].forEach.call(document.createRange().createContextualFragment(editor.getValue()).querySelectorAll('a-scene > *'), function (el) {
+		oldEls.push(el);
+		scene.appendChild(el);
+	});
 }
 document.getElementById('btn-submit').addEventListener('click', submit);
 

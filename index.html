@@ -199,7 +199,7 @@
 		</script>
 
 		<script class="step-content" id="step-7" type="text/markdown">
-			# A-Frame Tutorial - Step 6/10
+			# A-Frame Tutorial - Step 7/10
 
 			You can make an object seem really detailed by wrapping an image around it.
 
@@ -225,9 +225,14 @@
 		</script>
 
 		<script class="step-content" id="step-7" type="text/html">
-			<a-sky src=""></a-sky>
-			<a-box color="red" position="0 1.5 -5" rotation="0 30 0">
-				<a-entity geometry="primitive: torus;" material="color:green;" scale="1.5 1.5 1.5">
+			<a-assets>
+				<img id="sky" src="360.jpg" crossorigin="anonymous" /> <!-- image taken with 360 camera -->
+				<img id="checkerboard" src="checkerboard.png" crossorigin="anonymous" /> <!-- checkerboard image -->
+				<img id="maze" src="maze.png" crossorigin="anonymous" /> <!-- checkerboard image -->
+			</a-assets>
+			<a-sky src="#sky"></a-sky>
+			<a-box material="src: #checkerboard;" position="0 1.5 -5" rotation="0 30 0">
+				<a-entity geometry="primitive: torus;" material="src: #maze;" scale="1.5 1.5 1.5">
 					<a-animation attribute="rotation" dur="5000" from="0 0 0" to="0 360 0" repeat="indefinite" easing="linear"></a-animation>
 				</a-entity>
 			</a-box>
