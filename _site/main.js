@@ -41,7 +41,7 @@ var scene = document.querySelector('a-scene #contents');
 
 function renderStep(id) {
 	instructions.innerHTML = marked(document.querySelector('#' + id + '[type="text/markdown"]').text.replace(/\n\t\t\t/ig, '\n'));
-	document.querySelector('a-scene').resize();
+	document.querySelector('a-scene').reload();
 }
 
 function getSample() {
