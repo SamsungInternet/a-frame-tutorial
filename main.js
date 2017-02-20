@@ -1,9 +1,9 @@
 'use strict';
 /* eslint no-var: 0 */
-/* global CodeMirror, marked */
+/* global CodeMirror, marked, $ */
 
 var MIN = 1;
-var MAX = 10;
+var MAX = 9;
 
 var wrapping = [
 	'<!DOCTYPE html>',
@@ -29,10 +29,11 @@ window.onload = function () {
 	if (location.hash.length >= 2) {
 		step = Number(location.hash.slice(1)) - 1;
 	} else {
-		step = 0;
+		step = MIN;
 	};
 	nextStep();
 	getSample();
+	submit();
 };
 
 var instructions = document.querySelector('.instructions');
@@ -49,17 +50,39 @@ function getSample() {
 }
 
 function sample(id) {
-	editor.getDoc().setValue(wrapping.slice(0,8).join('\n') + '\n\t\t\t' + document.querySelector('#' + id + '[type="text/html"]').text.replace(/\n\t\t\t/ig, '\n\t\t\t').trim() + '\n' + wrapping.slice(8).join('\n'));
+
+	var wrapper = wrapping;
+	var wrapperSplit = 8;
+
+	if (id === 'step-9') {
+		var wrapper = wrapping.slice();
+		wrapper.splice(5, 0, '		<script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v1.2.1/dist/aframe-physics-system.min.js"></script>');
+		wrapper.splice(8, 1, '		<a-scene physics="gravity: -9.8;">');
+		var wrapperSplit = 9;
+	}
+
+	editor.getDoc().setValue(wrapper.slice(0,wrapperSplit).join('\n') + '\n\t\t\t' + document.querySelector('#' + id + '[type="text/html"]').text.replace(/\n\t\t\t/ig, '\n\t\t\t').trim() + '\n' + wrapper.slice(wrapperSplit).join('\n'));
 }
 document.getElementById('btn-sample').addEventListener('click', getSample);
 
 var oldEls = [];
 
 function submit() {
-	oldEls.splice(0).forEach(function (el) {
-		el.parentNode.removeChild(el);
+	var res = editor.getValue().match(/<a-scene.*>([^p]|p)*<\/a-scene>/)[0];
+	var virtualSceneEl = document.createRange().createContextualFragment(res).firstChild;
+
+	// update the attributes of the scene
+	[].forEach.call(virtualSceneEl.attributes, function (attr) {
+		scene.setAttribute(attr.name, attr.value);
 	});
-	[].forEach.call(document.createRange().createContextualFragment(editor.getValue()).querySelectorAll('a-scene > *'), function (el) {
+
+	// remove old elements
+	oldEls.splice(0).forEach(function (el) {
+		scene.removeChild(el);
+	});
+
+	// add new elements
+	[].slice.call(virtualSceneEl.children).forEach(function (el) {
 		oldEls.push(el);
 		scene.appendChild(el);
 	});

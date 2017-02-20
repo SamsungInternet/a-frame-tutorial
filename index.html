@@ -15,7 +15,8 @@
 			<h1>Loading...</h1>
 		</div>
 		<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
-   		<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+   		<script src="https://aframe.io/releases/0.5.0/aframe.js"></script>
+		<script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v1.2.1/dist/aframe-physics-system.js"></script>
 		<script src="https://cdn.rawgit.com/codemirror/CodeMirror/5.19.0/lib/codemirror.js"></script>
 		<script src="https://cdn.rawgit.com/codemirror/CodeMirror/5.19.0/addon/hint/show-hint.js"></script>
 		<script src="https://cdn.rawgit.com/codemirror/CodeMirror/5.19.0/addon/hint/xml-hint.js"></script>
@@ -38,14 +39,12 @@
 			<div class="code-area">
 				<div id="code"></div>
 			</div>
-			<a-scene embedded>
-				<a-entity id="contents"></a-entity>
-			</a-scene>
+			<a-scene embedded></a-scene>
 		</div>
 		<div class="footer">Built with &lt;3 by <a href="https://twitter.com/samsunginternet" target="_blank">Samsung Internet</a></div>
 
 		<script class="step-content" id="step-1" type="text/markdown">
-			# A-Frame Tutorial - Step 1/10
+			# A-Frame Tutorial - Step 1/9
 
 			Welcome to the A-Frame Tutorial, the idea of this tutorial is to get you feeling comfortable building A-Frame scenes using HTML.
 
@@ -64,7 +63,7 @@
 		</script>
 
 		<script class="step-content" id="step-2" type="text/markdown">
-			# A-Frame Tutorial - Step 2/10
+			# A-Frame Tutorial - Step 2/9
 
 			* The different A-Frame HTML elements are known as a *primitive*.
 			* When added to the HTML document, each Element is known as an *entity*.
@@ -90,7 +89,7 @@
 		</script>
 
 		<script class="step-content" id="step-3" type="text/markdown">
-			# A-Frame Tutorial - Step 3/10
+			# A-Frame Tutorial - Step 3/9
 
 			We can add 3D shapes to the scene. The `a-box` primitive adds a cube.
 
@@ -113,7 +112,7 @@
 		</script>
 
 		<script class="step-content" id="step-4" type="text/markdown">
-			# A-Frame Tutorial - Step 4/10
+			# A-Frame Tutorial - Step 4/9
 
 			The simplest A-Frame primitive is `a-entity`. Which is simply an empty entity in the document.
 
@@ -123,7 +122,7 @@
 
 			The geometry component has many primitives such as: `torus` and `sphere`.
 
-			The geometry component also has many configuration options. <a href="https://aframe.io/docs/0.5.0/components/geometry.html#torus" target="_blank">A-Frame Documentation</a>
+			The geometry component also has many configuration options. <a href="https://aframe.io/docs/0.5.0/components/geometry.html#torus" target="_blank">[Geometry Documentation]</a>
 
 			<input type="checkbox" id="step-4-1"><label for="step-4-1"> Use `a-entity` and the `geometry` component to add a Torus to the scene.
 		</script>
@@ -135,7 +134,7 @@
 		</script>
 
 		<script class="step-content" id="step-5" type="text/markdown">
-			# A-Frame Tutorial - Step 5/10
+			# A-Frame Tutorial - Step 5/9
 
 			In A-Frame objects are transformed using their parent as the origin.
 
@@ -165,7 +164,7 @@
 		</script>
 
 		<script class="step-content" id="step-6" type="text/markdown">
-			# A-Frame Tutorial - Step 6/10
+			# A-Frame Tutorial - Step 6/9
 
 			Animation is integral for building an interesting experience. This is achieved in A-Frame with`a-animation`. <a href="https://aframe.io/docs/0.5.0/core/animations.html" target="_blank">[Documentation]</a>
 
@@ -199,7 +198,7 @@
 		</script>
 
 		<script class="step-content" id="step-7" type="text/markdown">
-			# A-Frame Tutorial - Step 7/10
+			# A-Frame Tutorial - Step 7/9
 
 			You can make an object seem really detailed by wrapping an image around it.
 
@@ -212,30 +211,113 @@
 
 			```
 				<a-assets>
-					<img id="sky" src="360.jpg" crossorigin="anonymous" /> <!-- image taken with 360 camera -->
+					<img id="sky360" src="360.jpg" crossorigin="anonymous" /> <!-- image taken with 360 camera -->
 					<img id="checkerboard" src="checkerboard.jpg" crossorigin="anonymous" /> <!-- checkerboard image -->
 				</a-assets>
 
-				<a-sky src="#sky"></a-sky>
+				<a-sky src="#sky360"></a-sky>
 				<a-sphere material="src: #checkerboard;"></a-sphere>
 			```
 
-			<input type="checkbox" id="step-7-1"><label for="step-7-1"> Apply an image to the sky
+			<input type="checkbox" id="step-7-1"><label for="step-7-1"> Apply 360.jpg to the sky
 			<input type="checkbox" id="step-7-2"><label for="step-7-2"> Apply an image to some of the geometry.
 		</script>
 
 		<script class="step-content" id="step-7" type="text/html">
 			<a-assets>
-				<img id="sky" src="360.jpg" crossorigin="anonymous" /> <!-- image taken with 360 camera -->
+				<img id="sky360" src="360.jpg" crossorigin="anonymous" /> <!-- image taken with 360 camera -->
 				<img id="checkerboard" src="checkerboard.png" crossorigin="anonymous" /> <!-- checkerboard image -->
 				<img id="maze" src="maze.png" crossorigin="anonymous" /> <!-- checkerboard image -->
 			</a-assets>
-			<a-sky src="#sky"></a-sky>
+			<a-sky src="#sky360"></a-sky>
 			<a-box material="src: #checkerboard;" position="0 1.5 -5" rotation="0 30 0">
 				<a-entity geometry="primitive: torus;" material="src: #maze;" scale="1.5 1.5 1.5">
 					<a-animation attribute="rotation" dur="5000" from="0 0 0" to="0 360 0" repeat="indefinite" easing="linear"></a-animation>
 				</a-entity>
 			</a-box>
+		</script>
+
+		<script class="step-content" id="step-8" type="text/markdown">
+			# A-Frame Tutorial - Step 8/9
+
+			The `material` component has many other attributes. <a href="https://aframe.io/docs/0.5.0/components/material.html" target="_blank">[Material Documentation]</a>
+
+			You have alrady encountered `color` and `src`, here are some more useful ones:
+
+			* `src: #checkerboard; repeat: 4 2;` use repeat to tile the image. E.g. This makes a 4x2 grid of the texture.
+			* `color: pink; metalness: 0.9; roughness: 0.2;` metalness and roughness allow you to approximate real materials.
+			* `src: #checkerboard; metalness: 0.9; roughness: 0.2; sphericalEnvMap: #sky360;` sphericalEnvMap allows you to give the illusion of reflections by giving it a 360 image it should reflect.
+
+			<input type="checkbox" id="step-8-1"><label for="step-8-1"> Repeat a texture.
+			<input type="checkbox" id="step-8-2"><label for="step-8-2"> Try different values for the metalness and roughness.
+			<input type="checkbox" id="step-8-3"><label for="step-8-3"> Make a material have a reflection. Use 360.jpg as the relfection map.
+		</script>
+
+		<script class="step-content" id="step-8" type="text/html">
+			<a-assets>
+				<img id="sky360" src="360.jpg" crossorigin="anonymous" /> <!-- image taken with 360 camera -->
+				<img id="checkerboard" src="checkerboard.png" crossorigin="anonymous" /> <!-- checkerboard image -->
+				<img id="maze" src="maze.png" crossorigin="anonymous" /> <!-- checkerboard image -->
+			</a-assets>
+			<a-sky src="#sky360"></a-sky>
+			<a-box material="src: #checkerboard; color: pink; sphericalEnvMap: #sky360; metalness: 0.8; roughness: 0.2;" position="0 2 -5" rotation="0 30 0">
+				<a-entity geometry="primitive: torus;" material="src: #maze; repeat: 4 2; sphericalEnvMap: #sky360; metalness: 0.8; roughness: 0.2;" scale="1.5 1.5 1.5">
+					<a-animation attribute="rotation" dur="5000" from="0 0 0" to="0 360 0" repeat="indefinite" easing="linear"></a-animation>
+				</a-entity>
+			</a-box>
+		</script>
+
+		<script class="step-content" id="step-9" type="text/markdown">
+			# A-Frame Tutorial - Step 9/9
+
+			There are many components made by the community. E.g. the **Physics component** <a href="https://github.com/donmccurdy/aframe-physics-system/" target="_blank">[Physics Component Documentation]</a>
+
+			To use it add their script to the `<head>` of the page.
+
+			<pre><code>&lt;script src=&quot;&#x2F;&#x2F;cdn.rawgit.com&#x2F;donmccurdy&#x2F;aframe-physics-system&#x2F;v1.2.1&#x2F;dist&#x2F;aframe-physics-system.min.js&quot;&gt;&lt;&#x2F;script&gt;</code></pre>
+
+			The physics component provides some new components:
+
+			* `physics="gravity:-9.8;"` which does the calculations in the scene.
+			* `static-body` goes on any element which cannot move, usually the floor.
+			* `dynamic-body="mass: 1;"` goes on something you want to be dynamic.
+			* `velocity="0 4 0;"` allows you to predefine the velocity.
+
+			Physics can be expensive so limit your scene to only a few dynamic-body or static-body elements.
+
+			<input type="checkbox" id="step-9-1"><label for="step-9-1"> Add the script tag to the head of the web page.
+			<input type="checkbox" id="step-9-2"><label for="step-9-2"> Make a static floor
+			<input type="checkbox" id="step-9-3"><label for="step-9-3"> Make some dynamic objects
+		</script>
+
+		<script class="step-content" id="step-9" type="text/html">
+			<a-assets>
+				<img id="sky360" src="360.jpg" crossorigin="anonymous" /> <!-- image taken with 360 camera -->
+				<img id="checkerboard" src="checkerboard.png" crossorigin="anonymous" /> <!-- checkerboard image -->
+				<img id="maze" src="maze.png" crossorigin="anonymous" /> <!-- checkerboard image -->
+			</a-assets>
+
+			<!-- camera with a sphere around it to push objects -->
+			<a-camera universal-controls>
+				<a-entity visible="false" geometry="primitive: sphere;" static-body></a-entity>
+			</a-camera>
+
+			<!-- stack of blocks -->
+			<a-box material="color: blue;" dynamic-body position="0 0.4 -5"></a-box>
+			<a-box material="color: green;" dynamic-body position="-1.2 0.4 -5"></a-box>
+			<a-box material="color: yellow;" dynamic-body position="1.2 0.4 -5"></a-box>
+			<a-box material="color: crimson;" dynamic-body position="-0.55 1.5 -5"></a-box>
+			<a-box material="color: purple;" dynamic-body position="0.55 1.5 -5"></a-box>
+			<a-box material="color: orange;" dynamic-body position="0 2.6 -5"></a-box>
+
+			<!-- cannon ball -->
+			<a-sphere position="3 0.5 0" dynamic-body="mass: 20; shape: sphere;" radius="0.5" velocity="-8 3 -15" material="color: #AAF; src: #maze; metalness: 0.8; roughness: 0.2;"></a-sphere>
+
+			<!-- floor -->
+			<a-entity position="0 0 0" rotation="-90 0 0" geometry="primitive: plane; width: 50; height: 50;" static-body material="src: #checkerboard; repeat: 20 20; transparent: true; color:grey;"></a-entity>
+
+			<!-- sky -->
+			<a-sky color="#AAB"></a-sky>
 		</script>
 
 		<script src="main.js">

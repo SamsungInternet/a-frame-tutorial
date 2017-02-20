@@ -24,6 +24,7 @@ body {
 .buttons {
 	background: pink;
 	flex-grow: 0;
+	flex-shrink: 0;
 	display: flex;
 }
 
@@ -91,8 +92,9 @@ body {
 	flex-grow: 1;
 }
 
-
-
+code {
+    background-color: antiquewhite;
+}
 
 /* Base for label styling */
 [type="checkbox"]:not(:checked),
