@@ -29,7 +29,7 @@ window.onload = function () {
 	if (location.hash.length >= 2) {
 		step = Number(location.hash.slice(1)) - 1;
 	} else {
-		step = MIN;
+		step = MIN - 1;
 	};
 	nextStep();
 	getSample();
