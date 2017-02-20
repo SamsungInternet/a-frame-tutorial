@@ -1,8 +1,8 @@
 'use strict';
 /* eslint no-var: 0 */
-/* global CodeMirror, marked, $ */
+/* global CodeMirror, marked */
 
-var MIN = 1;
+var MIN = 0;
 var MAX = 9;
 
 var wrapping = [
@@ -26,15 +26,20 @@ window.onload = function () {
 		lineNumbers: true,
 		value: ''
 	});
+	onhashchange();
+	getSample();
+};
+
+function onhashchange() {
 	if (location.hash.length >= 2) {
 		step = Number(location.hash.slice(1)) - 1;
 	} else {
 		step = MIN - 1;
 	};
 	nextStep();
-	getSample();
-	submit();
-};
+}
+
+window.addEventListener('hashchange', onhashchange)
 
 var instructions = document.querySelector('.instructions');
 var step = 1;
@@ -47,6 +52,7 @@ function renderStep(id) {
 
 function getSample() {
 	sample('step-' + step);
+	submit();
 }
 
 function sample(id) {

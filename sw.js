@@ -1,8 +1,8 @@
 /* global toolbox, importScripts, self */
 /* jshint browser:true */
-/use strict/;
+'use strict';
 
-importScripts(/sw-toolbox.js/);
+importScripts('sw-toolbox.js');
 
 toolbox.options.networkTimeoutSeconds = 3;
 
