@@ -105,6 +105,10 @@ a-scene {
 
 code {
 	background-color: antiquewhite;
+	max-width: 100%;
+	overflow: auto;
+	display: inline-block;
+	vertical-align: bottom;
 }
 
 
