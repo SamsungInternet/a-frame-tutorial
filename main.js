@@ -3,7 +3,7 @@
 /* global CodeMirror, marked, AFRAME */
 
 var MIN = 0;
-var MAX = 9;
+var MAX = 10;
 
 var wrapping = [
 	'<!DOCTYPE html>',

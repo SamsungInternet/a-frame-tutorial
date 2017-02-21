@@ -352,6 +352,38 @@
 			<a-sky color="#AAB"></a-sky>
 		</script>
 
+		<script class="step-content" id="step-10" type="text/markdown">
+			# Congratulations!
+
+			You have made your first scenes with A-Frame!
+
+			[Check out what the community has made.](https://aframe.io/blog/)
+
+			<input type="checkbox" id="step-10-1"><label for="step-10-1"> Give yourself a round of aplause.
+		</script>
+
+		<script class="step-content" id="step-10" type="text/html">
+			<a-assets>
+				<img id="sky360" src="https://cdn.rawgit.com/AdaRoseEdwards/metaverse/1b9c3428/static/images/sky.jpg" crossorigin="anonymous" /> <!-- image taken with 360 camera -->
+				<a-asset-item id="crown" src="https://cdn.rawgit.com/AdaRoseEdwards/metaverse/1b9c3428/static/models/crown.obj" crossorigin="anonymous"></a-asset-item>
+				<a-animation attribute="rotation" dur="5000" from="0 0 0" to="0 360 0" repeat="indefinite" easing="linear"></a-animation>
+			</a-assets>
+
+			<a-entity rotation="4 -0.5 -9">
+
+				<!-- obj-model is used to display 3D models -->
+				<a-entity obj-model="obj: #crown;" position="-0.3 0.5 -5" scale="5 5 5" material="color: #ffc800; sphericalEnvMap: #sky360; metalness: 0.8; roughness:0.3;">
+					<a-animation attribute="rotation" dur="5000" from="0 0 0" to="0 360 0" repeat="indefinite" easing="linear"></a-animation>
+				</a-entity>
+			</a-entity>
+
+			<!-- These lights will replace the default lights on the scene -->
+			<a-light type="point" position="0 6 0" intensity="4"></a-light>
+			<a-light type="ambient" intensity="1"></a-light>
+
+			<a-sky src="#sky360"></a-sky>
+		</script>
+
 		<script src="main.js">
 		</script>
 
