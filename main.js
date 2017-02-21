@@ -1,6 +1,6 @@
 'use strict';
 /* eslint no-var: 0 */
-/* global CodeMirror, marked */
+/* global CodeMirror, marked, AFRAME */
 
 var MIN = 0;
 var MAX = 9;
@@ -80,7 +80,22 @@ function submit() {
 	// update the attributes of the scene
 	[].forEach.call(virtualSceneEl.attributes, function (attr) {
 		scene.setAttribute(attr.name, attr.value);
-		if (scene.systems[attr.name] && scene.systems[attr.name].update) scene.systems[attr.name].update({});
+
+		// hack to allow updating of the physics system as systems can't be updated live
+		// and physics has a bug in that regards
+		if (scene.systems[attr.name] && scene.systems[attr.name].update) {
+			var schema = scene.systems[attr.name].schema;
+			var rawData = attr.value;
+			var data;
+			if (AFRAME.schema.isSingleProperty(schema)) {
+				data = AFRAME.schema.parseProperty(rawData, schema);
+			} else {
+				data = AFRAME.schema.parseProperties(AFRAME.utils.styleParser.parse(rawData) || {}, schema, false, attr.name);
+			}
+			var oldData = scene.systems[attr.name].data;
+			scene.systems[attr.name].data = data;
+			scene.systems[attr.name].update(oldData);
+		}
 	});
 
 	// remove old elements
