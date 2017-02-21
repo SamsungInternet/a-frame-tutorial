@@ -80,6 +80,7 @@ function submit() {
 	// update the attributes of the scene
 	[].forEach.call(virtualSceneEl.attributes, function (attr) {
 		scene.setAttribute(attr.name, attr.value);
+		if (scene.systems[attr.name] && scene.systems[attr.name].update) scene.systems[attr.name].update({});
 	});
 
 	// remove old elements

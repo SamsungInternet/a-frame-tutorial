@@ -46,7 +46,7 @@
 			</div>
 			<a-scene embedded></a-scene>
 		</div>
-		<div class="footer">Built with &lt;3 by <a href="https://twitter.com/samsunginternet" target="_blank">Samsung Internet</a></div>
+		<div class="footer">Built with &lt;3 by <a href="https://twitter.com/samsunginternet" target="_blank">Samsung Internet</a><a href="https://github.com/samsunginternet/a-frame-tutorial" target="_blank"><span style="float: right;">View Source on Github</span></a></div>
 
 		<script class="step-content" id="step-0" type="text/markdown">
 			# A-Frame Tutorial - Contents
@@ -115,7 +115,8 @@
 <a-sky color="skyblue"></a-sky>
 			```
 
-			<input type="checkbox" id="step-2-1"><label for="step-2-1"> Try adding an `a-sky` to the scene, then press the **Run** button.</label>
+			<input type="checkbox" id="step-2-1"><label for="step-2-1"> Try adding an `a-sky` to the scene, then press the *Run* button.</label>
+			<input type="checkbox" id="step-2-2"><label for="step-2-2"> If you get stuck press the *Load Sample Code for this Step* button.</label>
 		</script>
 
 		<script class="step-content" id="step-2" type="text/html">
@@ -219,7 +220,7 @@
 			 ```
 
 			<input type="checkbox" id="step-6-1"><label for="step-6-1"> Try making an element spin or grow.
-			<input type="checkbox" id="step-6-1"><label for="step-6-1"> Try changing the easing function
+			<input type="checkbox" id="step-6-2"><label for="step-6-2"> Try changing the easing function
 		</script>
 
 		<script class="step-content" id="step-6" type="text/html">
@@ -246,7 +247,7 @@
 			```
 				<a-assets>
 					<img id="sky360" src="360.jpg" crossorigin="anonymous" /> <!-- image taken with 360 camera -->
-					<img id="checkerboard" src="checkerboard.jpg" crossorigin="anonymous" /> <!-- checkerboard image -->
+					<img id="checkerboard" src="checkerboard.png" crossorigin="anonymous" /> <!-- checkerboard image -->
 				</a-assets>
 
 				<a-sky src="#sky360"></a-sky>
@@ -279,7 +280,7 @@
 			You have alrady encountered `color` and `src`, here are some more useful ones:
 
 			* `src: #checkerboard; repeat: 4 2;` use repeat to tile the image. E.g. This makes a 4x2 grid of the texture.
-			* `color: pink; metalness: 0.9; roughness: 0.2;` metalness and roughness allow you to approximate real materials.
+			* `color: pink; metalness: 0.8; roughness: 0.5;` metalness and roughness allow you to approximate real materials.
 			* `src: #checkerboard; metalness: 0.9; roughness: 0.2; sphericalEnvMap: #sky360;` sphericalEnvMap allows you to give the illusion of reflections by giving it a 360 image it should reflect.
 
 			<input type="checkbox" id="step-8-1"><label for="step-8-1"> Repeat a texture.
